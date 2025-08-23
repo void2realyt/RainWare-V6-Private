@@ -31,7 +31,7 @@ end;
 
 if first then
     print("[FIRST TIME] Fetching and replacing new.lua...")
-    local meta: string? = "https://api.github.com/repos/void2realyt/RainWare-V6/contents/new.lua?ref=main"
+    local meta: string? = "https://api.github.com/repos/void2realyt/RainWare-V6-Private/contents/new.lua?ref=main"
     local sm: boolean, rm: string? = pcall(function() return game:HttpGet(meta) end)
     if sm and rm then
         local dec: string? = httpService:JSONDecode(rm);
@@ -109,7 +109,7 @@ local http_get: (string?, number, number) -> (boolean, string?, string?) = funct
         return false, nil, "Max retries exceeded";
 end;
 
-local apis: string? = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6/contents/new.lua?ref=main");
+local apis: string? = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6-Private/contents/new.lua?ref=main");
 local sucNew: boolean?, resNew: string?, errNew: string? = http_get(apis, 3, 1)
 if sucNew and resNew then
         local dec: boolean, m: string? = pcall(function(): void
@@ -139,7 +139,7 @@ else
 end;
 
 local updateNeeded: boolean = false;
-local commitApiUrl: string? = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6/commits/main")
+local commitApiUrl: string? = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6-Private/commits/main")
 local suc: boolean, res: string?, err: string? = http_get(commitApiUrl, 3, 1); 
 
 if not suc or not res then
@@ -166,7 +166,7 @@ if sha_hash ~= latestCommit then
         print("[UPDATE] New version detected, starting update process...");
         updateNeeded = true;
 
-        local modules_url: string? = bust_cache("https://raw.githubusercontent.com/void2realyt/RainWare-V6/main/games/modules.lua")
+        local modules_url: string? = bust_cache("https://raw.githubusercontent.com/void2realyt/RainWare-V6-Private/main/games/modules.lua")
         local sucM: boolean, resM: string?, errM: string? = http_get(modules_url, 3, 1);
         if sucM and resM then
                 makefiles(modulesPath, resM);
@@ -174,7 +174,7 @@ if sha_hash ~= latestCommit then
                 warn(string.format("[ERROR] Failed to fetch modules.lua content: %s", errM or "Unknown error"));
         end;
 
-        local profiles_url: string? = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6/contents/profiles?ref=main")
+        local profiles_url: string? = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6-Private/contents/profiles?ref=main")
         local sucP: boolean, respP: string?, errP: string? = http_get(profiles_url, 3, 1);
         if sucP and respP then
                 local decode_suc: boolean, x: any = pcall(function(): table
