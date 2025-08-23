@@ -79,12 +79,12 @@ local cleanupTargets = {
     {
         path = guipath,
         label = "new.lua",
-        url = "https://raw.githubusercontent.com/void2realyt/RainWare-V6/refs/heads/main/new.lua"
+        url = "https://raw.githubusercontent.com/void2realyt/RainWare-V6-Private/refs/heads/main/new.lua"
     },
     {
         path = modulesPath,
         label = "6872274481.lua",
-        url = "https://raw.githubusercontent.com/void2realyt/RainWare-V6/main/games/6872274481.lua"
+        url = "https://raw.githubusercontent.com/void2realyt/RainWare-V6-Private/refs/heads/main/games/6872274481.lua"
     },
         {
         path = mainPath,
@@ -114,7 +114,7 @@ for _, file in next, cleanupTargets do
 end
 
 
-local metaURL = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6/contents/new.lua?ref=main")
+local metaURL = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6-Private/contents/new.lua?ref=main")
 local sucNew, resNew, errNew = http_get(metaURL, 3, 1)
 
 if sucNew and resNew then
@@ -143,7 +143,7 @@ else
 end
 
 
-local commitApiUrl = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6/commits/main")
+local commitApiUrl = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6-Private/commits/main")
 local suc, res, err = http_get(commitApiUrl, 3, 1)
 if not suc or not res then
     warn(string.format("[ERROR] Could not fetch commit SHA: %s", err or "Unknown error"))
@@ -164,7 +164,7 @@ end
 local savedCommit = readfiles(versionPath)
 if savedCommit ~= latestCommit then
     print("[UPDATE] Detected new commit. Updating profiles...")
-    local profiles_url = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6/contents/profiles?ref=main")
+    local profiles_url = bust_cache("https://api.github.com/repos/void2realyt/RainWare-V6-Private/contents/profiles?ref=main")
     local sucP, respP, errP = http_get(profiles_url, 3, 1)
     if sucP and respP then
         local decodeP, list = pcall(function()
